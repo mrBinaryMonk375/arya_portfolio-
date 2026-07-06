@@ -40,13 +40,13 @@ const SERVICES = [
   },
 ];
 
-/** Individual card — identical design to the previous grid version. */
+/** Individual service card */
 function ServiceCard({ s, i }) {
   const Icon = s.icon;
   return (
     <article
       tabIndex={0}
-      className="marquee-card group relative w-[300px] sm:w-[340px] md:w-[360px] shrink-0 p-6 md:p-7 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-brand-orange/60 hover:bg-white/[0.04] hover:shadow-[0_0_0_1px_rgba(255,107,26,0.35)] focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/40 transition"
+      className="svc-card group relative w-[320px] shrink-0 p-6 md:p-7 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-brand-orange/60 hover:bg-white/[0.04] hover:shadow-[0_0_0_1px_rgba(255,107,26,0.35)] focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/40"
       data-testid={`service-card-${i}`}
       aria-label={s.title}
     >
@@ -56,7 +56,7 @@ function ServiceCard({ s, i }) {
         </div>
         <ArrowUpRight
           size={18}
-          className="text-white/30 group-hover:text-brand-orange group-hover:-translate-y-1 group-hover:translate-x-1 transition"
+          className="text-white/30 group-hover:text-brand-orange group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"
         />
       </div>
       <h3 className="font-display font-bold text-xl mb-2">{s.title}</h3>
@@ -71,27 +71,28 @@ function ServiceCard({ s, i }) {
           </span>
         ))}
       </div>
-      <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-brand-orange/60 to-transparent opacity-0 group-hover:opacity-100 transition" />
+      <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-brand-orange/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
     </article>
   );
 }
 
-/** One row of marquee — 4 copies of the list for seamless infinite loop. */
+/**
+ * One marquee row.
+ * Uses 4 copies of `items` so the track is always much wider than the viewport.
+ * Keyframe translates -50% (= exactly 2 copies) for a seamless loop.
+ */
 function MarqueeRow({ items, direction = "ltr", startIndex = 0, testid }) {
-  // Four copies: translate by -50% scrolls exactly 2 copies (= one full set).
-  const cards = [...items, ...items, ...items, ...items];
+  const cards = [...items, ...items, ...items, ...items]; // 4 copies → -50% = 2 copies = one full set
   return (
     <div
-      className="marquee-viewport"
+      className="svc-marquee"
       data-testid={testid}
       role="region"
       aria-label="Services carousel"
     >
-      <div
-        className={`marquee-row ${
-          direction === "ltr" ? "marquee-row--ltr" : "marquee-row--rtl"
-        }`}
-      >
+      <div className={`svc-track ${
+        direction === "ltr" ? "svc-track--ltr" : "svc-track--rtl"
+      }`}>
         {cards.map((s, i) => (
           <ServiceCard
             key={`${s.title}-${i}`}
