@@ -111,55 +111,73 @@ body {
 .hero-glow { animation: glow-pulse 6s ease-in-out infinite; }
 
 /* ---------- Services marquee ---------- */
-@keyframes marquee-left {
+
+/*
+  Both rows scroll LEFT (from 0 → -50%).
+  Row 1 (ltr) scrolls at normal speed.
+  Row 2 (rtl) scrolls in the opposite VISUAL direction:
+    we start it at -50% and animate to 0 (right-ward drift).
+*/
+@keyframes marquee-ltr {
   0%   { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(-50%, 0, 0); }
 }
-@keyframes marquee-right {
+@keyframes marquee-rtl {
   0%   { transform: translate3d(-50%, 0, 0); }
   100% { transform: translate3d(0, 0, 0); }
-}
-@keyframes card-float {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50%      { transform: translate3d(0, -6px, 0); }
 }
 
 .marquee-viewport {
   position: relative;
   overflow: hidden;
-  /* Edge fade */
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
-          mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  padding: 0.75rem 0;           /* vertical room so mask never clips card shadows */
+  /* Horizontal edge fade — only left & right edges, never top/bottom */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
 }
+
 .marquee-row {
   display: flex;
-  width: max-content;
+  width: max-content;           /* size to actual content — no overflow */
   gap: 1.25rem;
   will-change: transform;
-  animation-duration: 36s;
+  animation-duration: 40s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-play-state: running;
 }
-.marquee-row--ltr { animation-name: marquee-right; }
-.marquee-row--rtl { animation-name: marquee-left; }
-.marquee-viewport:hover .marquee-row { animation-play-state: paused; }
-.marquee-row:focus-within { animation-play-state: paused; }
 
-.marquee-card {
-  animation: card-float 5.5s ease-in-out infinite;
-  will-change: transform;
-}
-.marquee-card:nth-child(3n)   { animation-delay: 0.8s; }
-.marquee-card:nth-child(3n+1) { animation-delay: 1.6s; }
+/* Direction classes */
+.marquee-row--ltr { animation-name: marquee-ltr; }
+.marquee-row--rtl { animation-name: marquee-rtl; }
 
-/* Mobile: replace marquee with horizontal snap-scroll carousel */
+/* Pause on hover / focus */
+.marquee-viewport:hover .marquee-row  { animation-play-state: paused; }
+.marquee-row:focus-within             { animation-play-state: paused; }
+
+/* Cards — NO float animation; it fights the horizontal scroll */
+.marquee-card { will-change: auto; }
+
+/* ── Mobile: swap to snap-scroll carousel ── */
 @media (max-width: 767px) {
   .marquee-viewport {
     -webkit-mask-image: none;
             mask-image: none;
     overflow-x: auto;
     overflow-y: hidden;
+    padding: 0.5rem 0;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;

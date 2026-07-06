@@ -76,10 +76,10 @@ function ServiceCard({ s, i }) {
   );
 }
 
-/** One row of marquee — duplicates children twice for seamless loop. */
+/** One row of marquee — 4 copies of the list for seamless infinite loop. */
 function MarqueeRow({ items, direction = "ltr", startIndex = 0, testid }) {
-  // Two copies of the list side-by-side; keyframes translate by exactly -50%.
-  const cards = [...items, ...items];
+  // Four copies: translate by -50% scrolls exactly 2 copies (= one full set).
+  const cards = [...items, ...items, ...items, ...items];
   return (
     <div
       className="marquee-viewport"
@@ -88,13 +88,15 @@ function MarqueeRow({ items, direction = "ltr", startIndex = 0, testid }) {
       aria-label="Services carousel"
     >
       <div
-        className={`marquee-row ${direction === "ltr" ? "marquee-row--ltr" : "marquee-row--rtl"}`}
+        className={`marquee-row ${
+          direction === "ltr" ? "marquee-row--ltr" : "marquee-row--rtl"
+        }`}
       >
         {cards.map((s, i) => (
           <ServiceCard
             key={`${s.title}-${i}`}
             s={s}
-            i={(startIndex + (i % items.length))}
+            i={startIndex + (i % items.length)}
           />
         ))}
       </div>
