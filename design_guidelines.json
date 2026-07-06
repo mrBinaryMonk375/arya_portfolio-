@@ -1,0 +1,137 @@
+{
+  "theme_and_archetype": {
+    "domain": "Portfolio / Personal Brand",
+    "theme": "Dark",
+    "archetype": "High-Contrast & Editorial (Dark Mode with Vibrant Accents)",
+    "mood": "Energetic, professional yet creative, bold, and highly personal",
+    "description": "A dark-themed portfolio mimicking an editorial scrapbook or interactive wireframe. Relies on stark contrasts, a blazing bright orange primary color against deep black, and a mix of heavy brutalist sans-serif fonts with playful handwritten script accents. The design embraces asymmetry, floating doodle elements, and rich layered components."
+  },
+  "typography": {
+    "font_families": {
+      "heading": "'Outfit', sans-serif",
+      "body": "'DM Sans', sans-serif",
+      "accent": "'Caveat', cursive"
+    },
+    "hierarchy": {
+      "h1": "text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter leading-none",
+      "h2": "text-4xl sm:text-5xl font-bold tracking-tight",
+      "h3": "text-2xl sm:text-3xl font-semibold",
+      "body": "text-base sm:text-lg text-secondary leading-relaxed",
+      "script": "font-accent text-primary text-4xl sm:text-5xl -rotate-2 inline-block",
+      "label": "text-xs font-bold uppercase tracking-widest text-secondary"
+    },
+    "instructions": "Use 'Outfit' for all heavy structural text. Use 'Caveat' specifically for accent words (like 'Arya' in the hero heading, and 'Building Digital Experiences'). Never use Inter for headings."
+  },
+  "color_palette": {
+    "background": {
+      "main": "#050505",
+      "surface": "#121212",
+      "surface_elevated": "#1A1A1A"
+    },
+    "primary": {
+      "main": "#FF6B1A",
+      "hover": "#E55A12",
+      "glow": "rgba(255, 107, 26, 0.3)"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A3A3A3",
+      "inverse": "#000000"
+    },
+    "borders": {
+      "subtle": "rgba(255, 255, 255, 0.1)",
+      "focus": "#FF6B1A"
+    }
+  },
+  "spacing_and_layout": {
+    "container": "max-w-7xl mx-auto px-6 md:px-12",
+    "section_gap": "py-24 md:py-32",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-12 gap-6",
+    "surface_treatment": "Use crisp 1px borders (border-white/10) with dark backgrounds. Do not overuse heavy gradients; rely on flat colors, subtle noise/textures, and precise alignment."
+  },
+  "motion_and_interactions": {
+    "hover_states": "Buttons lift (-translate-y-1) with a subtle primary shadow. Text links get an underline expansion.",
+    "scroll_reveal": "Fade up with slight vertical translation. Elements in grids should stagger.",
+    "floating_doodles": "Use Framer Motion to give background doodles (wireframe icons, shapes) a slow, continuous floating animation (y: [-5, 5] over 3 seconds)."
+  },
+  "components": {
+    "navigation": {
+      "style": "Sticky top bar, z-50. Glassmorphism: backdrop-blur-xl bg-black/60 border-b border-white/10.",
+      "layout": "Left: 'AC' Monogram Logo (A in white, C in orange). Center: Desktop links (Home, About, Services, Projects, Contact). Right: 'LET'S CONNECT' pill button (bg-primary text-black font-bold rounded-full).",
+      "mobile": "Hamburger menu mapping to a fullscreen dark overlay."
+    },
+    "hero_section": {
+      "layout": "Two columns. Left: Typography and action. Right: Portrait image and doodles.",
+      "left_column": {
+        "heading": "Text 'Hey, I'm ' followed by 'Arya' in Caveat font (orange text with a swoosh/underline), then ' Chakraborty'.",
+        "role_chips": "Flex row of chips: [Developer], [Marketer], [Problem Solver]. Dark pills, border-white/10, orange Lucide icons (Code, Megaphone, Lightbulb).",
+        "stats_card": "A dark bento box (bg-surface) listing Age, City, Skills, Education. Grid layout inside the card.",
+        "ctas": "Primary: 'View My Work' (Orange pill). Secondary: 'Download Resume' (Outline pill)."
+      },
+      "right_column": {
+        "visual": "Arya's Hackathon photo isolated/layered over a massive circular orange glow (bg-[#FF6B1A] blur-[120px] absolute z-0).",
+        "decorations": "Absolute positioned wireframe/cursor SVG icons on the right side. Handwritten 'Building Digital Experiences' text overlaid."
+      }
+    },
+    "about_section": {
+      "style": "Scrapbook / Editorial layout.",
+      "pass_card": {
+        "background": "Solid Primary Orange (#FF6B1A)",
+        "content": "Vertical ID card style. Top: 'PASS CARD'. Photo: Arya's Denim Jacket photo (grayscale or high contrast). Fields below: NAME, AGE, CITY, GENDER, SKILLS, CURRENTLY (in crisp black uppercase text, highly structured).",
+        "surroundings": "Rotated text labels (bg-surface border border-white/10 text-white text-sm) positioned absolutely around the card. Labels: AI Enthusiast, Disciplined, Wireframing, Collaborative, Coffee Addict, Gym. Add dotted/dashed SVG connector lines tying labels to the pass card. Include doodle icons (Dumbbell, Laptop, Coffee, PenTool)."
+      }
+    },
+    "services_section": {
+      "layout": "Grid of 6 cards (2x3 or 3x2).",
+      "cards": "Dark surfaces (bg-surface), border-white/10, top-left orange icon, heading, short description. Services: Full Stack Web Dev, SEO, Digital Marketing, Data Analytics, AI & Automation, UI/UX Design."
+    },
+    "projects_section": {
+      "layout": "Stack or Grid of 3 featured projects.",
+      "cards": "Image thumbnail at top, content below. Title, short description, tech stack tags (small pills). Projects: CitiFix, EduVerse, School ERP."
+    },
+    "skills_and_achievements": {
+      "skills_cloud": "Marquee or flex-wrap cloud of pill shapes. (React.js, JavaScript, Vite, HTML, Tailwind CSS, Supabase, Digital Marketing, Team Management, SEO/AEO/GEO, GMB Optimisation).",
+      "achievements": "A solid dark strip or marquee: National Hackathon Winner | 5x Finalist | IIT KGP Campus Ambassador | IIT Madras Shaastra Intern."
+    },
+    "contact_and_footer": {
+      "contact_form": "Left: 'Let's Build Something' text. Right: Form (Name, Email, Subject, Message). Submit button triggers WhatsApp redirect: window.open('https://wa.me/9073568772?text=' + encodedMessage).",
+      "footer": "Simple dark footer. Social links (LinkedIn, Instagram, GitHub, Email). Copyright text."
+    },
+    "ai_chatbot": {
+      "position": "Fixed bottom-right.",
+      "trigger": "Floating circular button (orange) with MessageCircle icon.",
+      "panel": "Dark chat panel popping up. Header 'Ask about Arya'. Input area and message display."
+    }
+  },
+  "media": {
+    "images": {
+      "hero_portrait": {
+        "url": "https://customer-assets.emergentagent.com/job_portfolio-builder-1477/artifacts/78hv2ol3_image.png",
+        "description": "Arya with laptop at hackathon"
+      },
+      "about_portrait": {
+        "url": "https://customer-assets.emergentagent.com/job_portfolio-builder-1477/artifacts/w7km87m9_image.png",
+        "description": "Arya in denim jacket and sunglasses"
+      },
+      "project_citifix": {
+        "url": "https://images.unsplash.com/photo-1761335824267-7d2f86fb76ed?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMHRlY2hub2xvZ3klMjBkYXJrJTIwb3JhbmdlfGVufDB8fHx8MTc4MzMzMjM1OXww&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract technology streaks (Placeholder for CitiFix)"
+      },
+      "project_eduverse": {
+        "url": "https://images.pexels.com/photos/13107929/pexels-photo-13107929.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "3D digital abstract setting (Placeholder for EduVerse)"
+      },
+      "project_school_erp": {
+        "url": "https://images.pexels.com/photos/360314/pexels-photo-360314.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Captivating orange spirals (Placeholder for School ERP)"
+      }
+    }
+  },
+  "icons": {
+    "library": "lucide-react",
+    "instructions": "Use lucide-react for all standard UI icons (menus, arrows, social). For the doodle/sticker elements, if lucide doesn't have a perfectly whimsical fit, standard SVG paths or heavily stroked lucide icons (strokeWidth={2.5}) can work to mimic wireframes."
+  },
+  "testing": {
+    "rules": "All interactive elements MUST have a data-testid attribute. Format: kebab-case, role-based. e.g., data-testid='hero-cta-button', data-testid='contact-submit-button'."
+  }
+}
